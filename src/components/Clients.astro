@@ -26,18 +26,37 @@ const clientLogos = [
       </p>
     </div>
 
-    <div class="grid grid-cols-2 items-center justify-items-center gap-10 md:grid-cols-3 lg:grid-cols-4">
-      {clientLogos.map((logo) => (
-        <div class="flex h-24 w-full items-center justify-center p-2 transition-all duration-300 hover:scale-110 md:h-32">
-          <img
-            src={`/assets/img/logoklien/${logo.file}`}
-            alt={`Logo Klien Jayatama Bore Pile - ${logo.name}`}
-            title={logo.name}
-            class="max-h-full w-auto object-contain opacity-80 hover:opacity-100"
-            loading="lazy"
-          />
-        </div>
-      ))}
+    <div class="relative overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-linear-to-r before:from-surface before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-linear-to-l after:from-surface after:to-transparent">
+      <div class="flex animate-marquee items-center gap-12 py-4">
+        {/* Render twice for seamless loop */}
+        {[...clientLogos, ...clientLogos].map((logo, index) => (
+          <div class="flex h-20 w-40 shrink-0 items-center justify-center grayscale transition-all duration-300 hover:scale-110 hover:grayscale-0 md:h-28 md:w-48">
+            <img
+              src={`/assets/img/logoklien/${logo.file}`}
+              alt={`Logo Klien Jayatama Bore Pile - ${logo.name}`}
+              title={logo.name}
+              class="max-h-full w-auto object-contain opacity-70 hover:opacity-100"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 1.5rem)); } /* -50% because we duplicated the list, -1.5rem is half the gap */
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>
