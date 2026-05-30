@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Banner from '../../components/Banner.astro';
 import CTA from '../../components/CTA.astro';
 import { brand } from '../../config/brand';
+import { client } from '../../data/client';
 import { getWcProductBySlug } from '../../data/wc-cms';
 
 const { slug } = Astro.params;
@@ -49,20 +50,21 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
 
   <section class="py-section">
     <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <!-- Top Section: Image and Basic Info -->
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 mb-12">
         <!-- Image -->
-        <div class="overflow-hidden rounded-xl shadow-lg">
+        <div class="overflow-hidden rounded-xl shadow-lg bg-surface flex items-center justify-center max-h-[600px]">
           {service.image ? (
-            <img src={service.image} alt={service.name} class="size-full object-cover" />
+            <img src={service.image} alt={service.name} class="size-full object-contain" />
           ) : (
-            <div class="flex aspect-video items-center justify-center bg-surface text-text-muted">
+            <div class="flex aspect-video items-center justify-center text-text-muted">
               No image available
             </div>
           )}
         </div>
 
-        <!-- Content -->
-        <div class="space-y-6">
+        <!-- Basic Info & CTA -->
+        <div class="flex flex-col space-y-6">
           <nav aria-label="Breadcrumb" class="text-sm text-text-muted">
             <ol class="flex items-center gap-2">
               <li><a href="/layanan" class="hover:text-primary transition-colors">Layanan</a></li>
@@ -76,25 +78,63 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
           <h1 class="font-heading text-h1 font-bold uppercase text-text">{service.name}</h1>
           
           {service.price && (
-            <p class="text-2xl font-bold text-primary">
-              Mulai {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.price))}
-            </p>
+            <div class="inline-flex flex-col rounded-lg bg-primary/5 p-4 border border-primary/10">
+              <span class="text-sm font-semibold text-text-muted mb-1">Estimasi Biaya:</span>
+              <div class="flex items-baseline gap-3">
+                <p class="text-3xl font-bold text-primary">
+                  {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.price))}
+                  <span class="text-sm font-normal text-text-muted ml-1">/ meter</span>
+                </p>
+                {service.on_sale && service.regular_price && (
+                  <span class="text-lg text-text-muted line-through">
+                    {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.regular_price))}
+                  </span>
+                )}
+              </div>
+            </div>
           )}
 
-          <div class="prose prose-lg max-w-none text-text-muted" set:html={service.description} />
+          <div class="text-lg text-text-muted italic border-l-4 border-primary/20 pl-4 py-2">
+            {service.short_description}
+          </div>
 
-          <div class="pt-6 border-t border-border">
-            <h3 class="text-sm font-bold uppercase tracking-wider text-text mb-3">Kategori & Tags</h3>
-            <div class="flex flex-wrap gap-2">
-              {service.categories.map((cat: string) => (
-                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">{cat}</span>
-              ))}
-              {service.tags.map((tag: string) => (
-                <span class="px-3 py-1 bg-surface text-text-muted text-xs font-medium rounded-full border border-border">#{tag}</span>
-              ))}
+          <div class="mt-4 flex flex-wrap gap-4 pt-6">
+            <a 
+              href={`https://wa.me/${client.phoneForTel.replace(/\D/g, '')}?text=Halo Jayatama, saya ingin konsultasi dan pesan layanan: ${service.name}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-[56px] flex-1 items-center justify-center rounded-md bg-accent px-8 py-4 text-lg font-bold text-accent-fg shadow-lg transition-all hover:scale-[1.02] hover:opacity-95 active:scale-[0.98]"
+            >
+              <svg class="mr-2 size-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Konsultasi via WhatsApp
+            </a>
+          </div>
+
+          <div class="pt-6 border-t border-border flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-text">Kategori:</h3>
+              <div class="flex flex-wrap gap-2">
+                {service.categories.map((cat: string) => (
+                  <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">{cat}</span>
+                ))}
+              </div>
             </div>
+            {service.sku && (
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-text-muted">SKU:</span>
+                <span class="text-xs font-medium text-text">{service.sku}</span>
+              </div>
+            )}
           </div>
         </div>
+      </div>
+
+      <!-- Bottom Section: Full Width Description -->
+      <div class="mt-12 border-t border-border pt-12">
+        <h2 class="font-heading text-h2 font-bold uppercase text-text mb-8">Deskripsi Lengkap</h2>
+        <div class="prose prose-lg max-w-none text-text-muted" set:html={service.description} />
       </div>
     </div>
   </section>
