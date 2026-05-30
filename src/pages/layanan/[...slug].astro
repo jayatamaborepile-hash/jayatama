@@ -49,6 +49,7 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
     }
   }}
 >
+  <meta name="keywords" content={keywords} slot="head" />
   <Header slot="header" />
 
   <Banner title={service.name} />
@@ -71,7 +72,7 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
         <div class="space-y-6">
           <nav aria-label="Breadcrumb" class="text-sm text-text-muted">
             <ol class="flex items-center gap-2">
-              <li><a href="/services" class="hover:text-primary transition-colors">Layanan</a></li>
+              <li><a href="/layanan" class="hover:text-primary transition-colors">Layanan</a></li>
               <li class="flex items-center gap-2">
                 <svg class="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 <span class="text-text font-medium">{service.name}</span>

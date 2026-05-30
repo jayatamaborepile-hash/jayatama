@@ -1,10 +1,10 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import Banner from '../../components/Banner.astro';
-import { brand } from '../../config/brand';
-import { client } from '../../data/client';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Banner from '../components/Banner.astro';
+import { brand } from '../config/brand';
+import { client } from '../data/client';
 ---
 
 <BaseLayout
@@ -42,7 +42,7 @@ import { client } from '../../data/client';
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          action="/contact/success"
+          action="/kontak/sukses"
           class="flex flex-col gap-5"
         >
           <input type="hidden" name="form-name" value="contact" />
@@ -120,7 +120,8 @@ import { client } from '../../data/client';
           <a href={`tel:${client.phoneForTel}`} class="mt-1 block text-primary-light font-medium transition-colors hover:text-primary">
             {client.phoneFormatted}
           </a>
-          <a href={`https://wa.me/${client.phoneForTel.replace('+', '')}`} target="_blank" class="mt-2 inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-bold text-white hover:bg-green-700">
+          <a href={`https://wa.me/${client.phoneForTel.replace('+', '')}`} target="_blank" class="mt-2 inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-green-700">
+             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="size-5 brightness-0 invert" />
              Chat WhatsApp
           </a>
         </div>

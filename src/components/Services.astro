@@ -26,12 +26,12 @@ const {
   heading = 'Solusi Pondasi Profesional',
   description = 'Jayatama Bore Pile menyediakan layanan lengkap mulai dari konsultasi hingga eksekusi lapangan dengan standar teknis tinggi.',
   services = [
-    { title: 'Konsultasi Teknis',    description: 'Diskusi mendalam mengenai kebutuhan struktur pondasi dan estimasi awal proyek Anda.', href: '/services' },
-    { title: 'Survey Lokasi',       description: 'Pemeriksaan kondisi tanah dan akses lapangan untuk menentukan metode kerja yang tepat.', href: '/services' },
-    { title: 'Penyusunan RAB',      description: 'Penawaran harga yang transparan, terperinci, dan tanpa biaya tersembunyi.', href: '/services' },
-    { title: 'Pengeboran Bore Pile', description: 'Eksekusi pengeboran, pembesian, dan pengecoran beton sesuai spesifikasi teknis.', href: '/services' },
-    { title: 'Dokumentasi Proyek',  description: 'Laporan progres setiap tahap pekerjaan sebagai bentuk transparansi kepada klien.', href: '/services' },
-    { title: 'Pembersihan Area',    description: 'Kami memastikan lokasi proyek kembali rapi dan bersih setelah pekerjaan selesai.', href: '/services' },
+    { title: 'Konsultasi Teknis',    description: 'Diskusi mendalam mengenai kebutuhan struktur pondasi dan estimasi awal proyek Anda.', href: '/layanan' },
+    { title: 'Survey Lokasi',       description: 'Pemeriksaan kondisi tanah dan akses lapangan untuk menentukan metode kerja yang tepat.', href: '/layanan' },
+    { title: 'Penyusunan RAB',      description: 'Penawaran harga yang transparan, terperinci, dan tanpa biaya tersembunyi.', href: '/layanan' },
+    { title: 'Pengeboran Bore Pile', description: 'Eksekusi pengeboran, pembesian, dan pengecoran beton sesuai spesifikasi teknis.', href: '/layanan' },
+    { title: 'Dokumentasi Proyek',  description: 'Laporan progres setiap tahap pekerjaan sebagai bentuk transparansi kepada klien.', href: '/layanan' },
+    { title: 'Pembersihan Area',    description: 'Kami memastikan lokasi proyek kembali rapi dan bersih setelah pekerjaan selesai.', href: '/layanan' },
   ],
 } = Astro.props;
 ---
@@ -48,8 +48,8 @@ const {
       {services.map((service, i) => (
         <li>
           <a
-            href={service.href || '/services'}
-            aria-label={`Learn more about ${service.title}`}
+            href={service.href || '/layanan'}
+            aria-label={`Pelajari lebih lanjut tentang ${service.title}`}
             class="group flex h-full cursor-pointer flex-col rounded-lg border border-border bg-background p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
           >
             <div class="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-fg">
@@ -58,8 +58,8 @@ const {
             <h3 class="font-heading text-h3 font-semibold text-text">{service.title}</h3>
             <p class="mt-2 flex-1 text-sm leading-relaxed text-text-muted">{service.description}</p>
             <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors group-hover:text-accent">
-              Learn more
-              <span class="sr-only"> about {service.title}</span>
+              Pelajari selengkapnya
+              <span class="sr-only"> tentang {service.title}</span>
               <svg class="size-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>

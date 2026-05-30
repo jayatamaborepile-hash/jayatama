@@ -4,11 +4,10 @@ import { client } from '../data/client';
 
 const nav = [
   { label: 'Beranda',  href: '/' },
-  { label: 'Tentang',  href: '/about' },
-  { label: 'Layanan',  href: '/services' },
-  { label: 'Ulasan',   href: '/reviews' },
+  { label: 'Tentang',  href: '/tentang-kami' },
+  { label: 'Layanan',  href: '/layanan' },
   { label: 'Blog',     href: '/blog' },
-  { label: 'Kontak',   href: '/contact' },
+  { label: 'Kontak',   href: '/kontak' },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -65,7 +64,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         {client.phoneFormatted}
       </a>
       <a
-        href="/contact"
+        href="/kontak"
         class="inline-flex min-h-[44px] items-center rounded-md bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         Penawaran Gratis
@@ -128,7 +127,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         {client.phoneFormatted}
       </a>
       <a
-        href="/contact"
+        href="/kontak"
         class="flex min-h-[44px] items-center justify-center rounded-md bg-accent px-5 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90"
       >
         Penawaran Gratis

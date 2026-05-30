@@ -67,7 +67,7 @@ const icons = [
               </div>
               <div>
                 <h3 class="font-heading text-h3 font-semibold text-text">
-                  <a href={`/services/${service.slug}`} class="hover:text-primary transition-colors">
+                  <a href={`/layanan/${service.slug}`} class="hover:text-primary transition-colors">
                     {service.name}
                   </a>
                 </h3>
@@ -78,7 +78,7 @@ const icons = [
               {service.price && (
                 <span class="font-bold text-primary">Mulai {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.price))}</span>
               )}
-              <a href={`/services/${service.slug}`} class="text-sm font-bold text-accent hover:underline">Detail Layanan &rarr;</a>
+              <a href={`/layanan/${service.slug}`} class="text-sm font-bold text-accent hover:underline">Detail Layanan &rarr;</a>
             </div>
           </div>
         ))}
