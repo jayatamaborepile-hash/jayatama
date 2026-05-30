@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import project1 from "../assets/images/project/project-1.png";
+import project2 from "../assets/images/project/project-2.png";
+
+const projects = [
+  {
+    src: project1,
+    alt: "Proyek Pengerjaan Bore Pile Jayatama",
+    title: "Pengerjaan Pondasi Bore Pile",
+    description: "Layanan jasa bore pile profesional untuk berbagai skala proyek konstruksi."
+  },
+  {
+    src: project2,
+    alt: "Proyek Pengerjaan Strauss Pile Jayatama",
+    title: "Pengerjaan Strauss Pile",
+    description: "Solusi pondasi strauss pile untuk bangunan rumah dan gedung menengah."
+  }
+];
+---
+
+<section class="py-section bg-surface">
+  <div class="mx-auto max-w-site px-4 sm:px-6">
+    <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+      <span class="text-topper font-bold uppercase tracking-widest text-accent">Proyek Kami</span>
+      <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">
+        Dokumentasi Pekerjaan
+      </h2>
+      <p class="mt-3 text-text-muted leading-relaxed">
+        Beberapa dokumentasi pengerjaan proyek bore pile dan strauss pile yang telah kami selesaikan dengan hasil maksimal.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      {projects.map((project) => (
+        <div class="group overflow-hidden rounded-xl border border-border bg-background shadow-sm transition-all hover:shadow-md">
+          <div class="aspect-video overflow-hidden">
+            <Image
+              src={project.src}
+              alt={project.alt}
+              width={800}
+              height={450}
+              class="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading text-xl font-bold uppercase text-text">{project.title}</h3>
+            <p class="mt-2 text-sm text-text-muted">{project.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
