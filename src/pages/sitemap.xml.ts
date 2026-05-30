@@ -25,8 +25,6 @@ export async function GET() {
           return `
             <url>
               <loc>${baseUrl}${page}</loc>
-              <lastmod>${new Date().toISOString()}</lastmod>
-              <changefreq>monthly</changefreq>
               <priority>${page === '' ? '1.0' : '0.8'}</priority>
             </url>
           `;
@@ -37,8 +35,6 @@ export async function GET() {
           return `
             <url>
               <loc>${baseUrl}/blog/${post.id}</loc>
-              <lastmod>${post.date.toISOString()}</lastmod>
-              <changefreq>weekly</changefreq>
               <priority>0.7</priority>
             </url>
           `;
@@ -49,8 +45,6 @@ export async function GET() {
           return `
             <url>
               <loc>${baseUrl}/layanan/${product.slug}</loc>
-              <lastmod>${new Date().toISOString()}</lastmod>
-              <changefreq>weekly</changefreq>
               <priority>0.7</priority>
             </url>
           `;
