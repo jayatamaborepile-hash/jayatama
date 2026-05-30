@@ -7,6 +7,7 @@ import CTA from '../components/CTA.astro';
 import { Image } from 'astro:assets';
 import { brand } from '../config/brand';
 import { client } from '../data/client';
+import { aboutImage } from '../config/images';
 
 const team = [
   { name: 'LISA', role: 'Founder & Owner', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80' },
@@ -45,12 +46,12 @@ const team = [
     <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
       <div class="overflow-hidden rounded-lg shadow-lg">
         <Image
-          src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80"
-          alt="Tim Jayatama merencanakan proyek"
+          src={aboutImage || "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80"}
+          alt="Pekerjaan Bore Pile Jayatama"
           width={800}
-          height={600}
+          height={1000}
           loading="lazy"
-          class="size-full object-cover"
+          class="h-auto w-full object-contain"
         />
       </div>
       <div class="space-y-5">

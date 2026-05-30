@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import Banner from '../components/Banner.astro';
 import CTA from '../components/CTA.astro';
 import { brand } from '../config/brand';
+import { client } from '../data/client';
 import { getWcProducts } from '../data/wc-cms';
 
 const wcServices = await getWcProducts();
@@ -64,27 +65,63 @@ const icons = [
           <p class="text-xs text-text-muted/50 mt-2">Pastikan konfigurasi WooCommerce di .env sudah benar dan produk sudah diterbitkan.</p>
         </div>
       ) : (
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {wcServices.map((service, i) => (
-            <div class="group relative flex flex-col gap-4 rounded-lg border border-border bg-background p-6 shadow-sm transition-shadow hover:shadow-md">
-              <div class="flex gap-5">
-                <div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-fg">
-                  <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" set:html={icons[i % icons.length]} />
-                </div>
-                <div>
-                  <h3 class="font-heading text-h3 font-semibold text-text group-hover:text-primary transition-colors">
+            <div class="group flex flex-col overflow-hidden rounded-xl border border-border bg-background shadow-sm transition-all hover:shadow-md">
+              <!-- Product Image -->
+              <div class="aspect-video overflow-hidden bg-surface relative">
+                {service.image ? (
+                  <img src={service.image} alt={service.name} class="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                ) : (
+                  <div class="flex size-full items-center justify-center text-text-muted">
+                    <svg class="size-12 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" set:html={icons[i % icons.length]} />
+                  </div>
+                )}
+              </div>
+
+              <div class="flex flex-1 flex-col p-6">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-heading text-xl font-bold uppercase text-text group-hover:text-primary transition-colors">
                     <a href={`/layanan/${service.slug}`}>
                       {service.name}
                     </a>
                   </h3>
-                  <p class="mt-2 text-text-muted leading-relaxed">{service.short_description}</p>
                 </div>
-              </div>
-              <div class="mt-auto pt-4 border-t border-border flex items-center justify-between">
+                
                 {service.price && (
-                  <span class="font-bold text-primary">Mulai {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.price))}</span>
+                  <div class="mb-3 flex items-baseline gap-2">
+                    {service.on_sale && service.regular_price && (
+                      <span class="text-xs text-text-muted line-through">
+                        {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.regular_price))}
+                      </span>
+                    )}
+                    <span class="text-lg font-bold text-primary">
+                      {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.price))}
+                      <span class="text-xs font-normal text-text-muted">/ m</span>
+                    </span>
+                  </div>
                 )}
-                <a href={`/layanan/${service.slug}`} class="text-sm font-bold text-accent hover:underline after:absolute after:inset-0">Detail Layanan &rarr;</a>
+
+                <p class="line-clamp-3 text-sm leading-relaxed text-text-muted">
+                  {service.short_description}
+                </p>
+                
+                <div class="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-6">
+                  <a 
+                    href={`/layanan/${service.slug}`} 
+                    class="flex-1 rounded-md border border-primary px-4 py-2 text-center text-sm font-bold text-primary transition-colors hover:bg-primary/5"
+                  >
+                    Detail
+                  </a>
+                  <a 
+                    href={`https://wa.me/${client.phoneForTel.replace(/\D/g, '')}?text=Halo Jayatama, saya ingin pesan layanan: ${service.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 rounded-md bg-accent px-4 py-2 text-center text-sm font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90"
+                  >
+                    Pesan WA
+                  </a>
+                </div>
               </div>
             </div>
           ))}

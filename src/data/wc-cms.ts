@@ -32,7 +32,10 @@ export async function getWcProducts() {
       image: product.images?.[0]?.src || null,
       categories: product.categories?.map((c: any) => c.name) || [],
       tags: product.tags?.map((t: any) => t.name) || [],
-      sku: product.sku
+      sku: product.sku,
+      regular_price: product.regular_price,
+      sale_price: product.sale_price,
+      on_sale: product.on_sale
     }));
   } catch (e) {
     console.error('Error fetching WC products:', e);
@@ -67,7 +70,10 @@ export async function getWcProductBySlug(slug: string) {
       categories: product.categories?.map((c: any) => c.name) || [],
       tags: product.tags?.map((t: any) => t.name) || [],
       sku: product.sku,
-      permalink: product.permalink
+      permalink: product.permalink,
+      regular_price: product.regular_price,
+      sale_price: product.sale_price,
+      on_sale: product.on_sale
     };
   } catch (e) {
     console.error(`Error fetching WC product with slug ${slug}:`, e);
