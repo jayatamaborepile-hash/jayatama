@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Banner from '../components/Banner.astro';
+import CTA from '../components/CTA.astro';
+import { Image } from 'astro:assets';
+import { brand } from '../config/brand';
+import { client } from '../data/client';
+
+const team = [
+  { name: 'LISA', role: 'Founder & Owner', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80' },
+];
+---
+
+<BaseLayout
+  title="Tentang Kami"
+  description={`Pelajari lebih lanjut tentang ${brand.name} — visi kami, tim, dan komitmen kami terhadap kualitas layanan.`}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `Tentang ${brand.name}`,
+    description: `Profil dan sejarah ${brand.name}, spesialis pondasi bore pile di Jakarta.`,
+    mainEntity: {
+      '@type': 'LocalBusiness',
+      name: brand.name,
+      image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80',
+      telePhone: client.phoneForTel,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: client.address.lineOne,
+        addressLocality: client.address.city,
+        addressRegion: client.address.state,
+        addressCountry: client.address.country,
+      }
+    }
+  }}
+>
+  <Header slot="header" />
+
+  <Banner title="Tentang Kami" />
+
+  <!-- Story -->
+  <section class="py-section">
+    <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <Image
+          src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80"
+          alt="Tim Jayatama merencanakan proyek"
+          width={800}
+          height={600}
+          loading="lazy"
+          class="size-full object-cover"
+        />
+      </div>
+      <div class="space-y-5">
+        <span class="text-topper font-bold uppercase tracking-widest text-accent">Kisah Kami</span>
+        <h2 class="font-heading text-h2 font-bold uppercase text-text">Membangun Kepercayaan Melalui Kualitas</h2>
+        <p class="text-text-muted leading-relaxed">
+          Jayatama Bore Pile berdiri dengan tujuan memberikan solusi pondasi yang kuat, aman, dan efisien untuk proyek rumah tinggal, ruko, gedung bertingkat, dan proyek komersial di DKI Jakarta.
+        </p>
+        <p class="text-text-muted leading-relaxed">
+          Dipimpin oleh LISA, tim kami terdiri dari teknisi pengeboran, surveyor tanah, dan tenaga lapangan yang berpengalaman. Kami menangani berbagai kondisi lapangan — dari area sempit permukiman hingga lahan komersial — dengan metode dan peralatan yang disesuaikan untuk hasil terbaik.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="bg-surface py-section">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto mb-10 max-w-2xl text-center">
+        <span class="text-topper font-bold uppercase tracking-widest text-accent">Kepemimpinan</span>
+        <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">Bertemu dengan Pemilik</h2>
+      </div>
+
+      <div class="flex justify-center">
+        {team.map(({ name, role, image }) => (
+          <div class="max-w-xs overflow-hidden rounded-lg bg-background shadow-sm text-center">
+            <Image
+              src={image}
+              alt={name}
+              width={400}
+              height={400}
+              loading="lazy"
+              class="aspect-square w-full object-cover"
+            />
+            <div class="p-5">
+              <h3 class="font-heading text-lg font-semibold text-text">{name}</h3>
+              <p class="text-sm text-text-muted">{role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section for Lisa Profile -->
+  <section class="py-section">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="prose prose-lg mx-auto text-text-muted">
+        <h2 class="font-heading text-h2 font-bold uppercase text-text text-center mb-8">Profil LISA</h2>
+        <p>
+          LISA adalah pendiri dan pemilik Jayatama Bore Pile. Berangkat dari pengalaman bekerja langsung di lapangan proyek konstruksi, LISA memahami betul bahwa pondasi yang kuat adalah kunci utama keamanan dan umur panjang sebuah bangunan.
+        </p>
+        <p>
+          Sebagai pemilik, LISA terlibat langsung dalam banyak aspek pekerjaan: mulai dari menerima konsultasi awal dari klien, mengoordinasikan jadwal survey lokasi, hingga memantau progres pengeboran dan pengecoran di lapangan. Pendekatan hands-on ini membuat klien merasa lebih tenang karena dapat berdiskusi langsung mengenai kebutuhan teknis dan solusi terbaik.
+        </p>
+        <p>
+          LISA dikenal mengutamakan komunikasi yang jelas dan terbuka. Ia memastikan setiap penawaran RAB yang dikeluarkan Jayatama mudah dipahami, rinci, dan tanpa biaya tersembunyi. Bagi LISA, setiap klien bukan sekadar "proyek", tetapi adalah pemilik investasi jangka panjang yang harus dilindungi.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Banner from '../components/Banner.astro';
+import { brand } from '../config/brand';
+---
+
+<BaseLayout title="Syarat dan Ketentuan" description={`Syarat dan Ketentuan Layanan ${brand.name}`}>
+  <Header slot="header" />
+  <Banner title="Syarat dan Ketentuan" />
+  
+  <section class="py-section">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <div class="prose prose-blue prose-lg max-w-none text-text-muted">
+        <h2>Penerimaan Syarat</h2>
+        <p>
+          Dengan mengakses atau menggunakan layanan dan/atau situs jayatamaborepile.com (selanjutnya disebut “Situs”) serta menggunakan layanan jasa bore pile oleh Jayatama Bore Pile (“Kami”), Anda menyatakan setuju untuk terikat oleh Syarat & Ketentuan ini. Jika Anda tidak setuju dengan salah satu ketentuan, mohon jangan menggunakan Situs atau layanan kami.
+        </p>
+
+        <h2>Definisi</h2>
+        <ul>
+          <li><strong>“Klien” atau “Anda”:</strong> pihak yang menggunakan layanan Jayatama Bore Pile.</li>
+          <li><strong>“Layanan”:</strong> semua jasa yang kami tawarkan termasuk konsultasi, survey lokasi, penyusunan RAB, pengeboran bore pile, pembesian, pengecoran beton, dan layanan terkait proyek pondasi.</li>
+          <li><strong>“Kontrak”:</strong> kesepakatan tertulis/PO antara Jayatama Bore Pile dan Klien yang mengatur lingkup kerja, harga, waktu, dan ketentuan lain.</li>
+        </ul>
+
+        <h2>Lingkup Layanan & Penawaran</h2>
+        <ol>
+          <li>Penawaran harga yang kami berikan bersifat indikatif sampai dilakukan survey lapangan dan pengukuran yang rinci.</li>
+          <li>Lingkup pekerjaan yang disepakati dituangkan dalam Kontrak atau Surat Perintah Kerja (SPK). Perubahan lingkup (variations) yang terjadi selama pelaksanaan akan dikenakan biaya tambahan sesuai perhitungan tambahan dan harus disetujui secara tertulis.</li>
+          <li>Kami berhak menolak pekerjaan yang melanggar hukum, berisiko tinggi tanpa mitigasi yang memadai, atau berada di lokasi yang tidak memungkinkan secara teknis untuk dilaksanakan dengan aman.</li>
+        </ol>
+
+        <h2>Harga, Pembayaran, dan Penagihan</h2>
+        <ul>
+          <li>Harga yang tercantum pada penawaran belum termasuk PPN (jika berlaku), biaya mobilisasi alat, dan biaya tambahan lain yang mungkin timbul (mis. izin, akses khusus).</li>
+          <li>Syarat pembayaran standar: DP saat penandatanganan Kontrak/SPK, pelunasan sebagian atau bertahap sesuai milestone, dan saldo akhir setelah pekerjaan selesai dan serah terima.</li>
+          <li>Keterlambatan pembayaran dapat dikenakan bunga keterlambatan atau penundaan jadwal pengerjaan sampai pembayaran dipenuhi.</li>
+        </ul>
+
+        <h2>Survey Lokasi & Akses Kerja</h2>
+        <ul>
+          <li>Klien wajib memberikan akses lokasi yang memadai untuk survey dan pelaksanaan pekerjaan pada jadwal yang disepakati.</li>
+          <li>Jika diperlukan izin lokasi, pemindahan utilitas, atau koordinasi dengan pihak ketiga (tetangga, pengelola kompleks), hal tersebut menjadi tanggung jawab Klien kecuali disepakati lain.</li>
+        </ul>
+
+        <h2>Kualitas, Garansi, dan Pemeriksaan</h2>
+        <p>
+          Jayatama Bore Pile melaksanakan pekerjaan sesuai standar teknis yang disepakati dan rekomendasi engineering yang berlaku. Garansi terhadap pekerjaan diberikan sesuai dengan ketentuan dalam kontrak tertulis.
+        </p>
+
+        <h2>Kesehatan & Keselamatan Kerja (K3)</h2>
+        <p>
+          Seluruh kegiatan operasional kami mengikuti protokol K3 dasar: penggunaan APD, pengamanan area kerja, hingga pengawasan teknis. Klien wajib memberi tahu jika ada risiko khusus di lokasi (gas bawah tanah, struktur rapuh, utilitas tertanam) sebelum pekerjaan dimulai.
+        </p>
+
+        <h2>Penyelesaian Sengketa</h2>
+        <p>
+          Semua perselisihan yang timbul sehubungan dengan Syarat & Ketentuan ini akan diselesaikan terlebih dahulu secara musyawarah untuk mufakat. Hukum yang berlaku adalah hukum Republik Indonesia.
+        </p>
+
+        <h2>Kontak</h2>
+        <p>
+          <strong>Jayatama Bore Pile / LISA (Pemilik)</strong><br>
+          Email: info@jayatamaborepile.com<br>
+          WhatsApp/Telepon: 0882‑1571‑4841
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

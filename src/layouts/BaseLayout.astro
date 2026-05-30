@@ -1,0 +1,115 @@
+---
+/**
+ * Base layout — wraps every page.
+ *
+ * Astro 6 features used:
+ *  • <Font />         — built-in font optimizer from astro.config.mjs fonts array
+ *  • <ClientRouter /> — client-side navigation with CSS transition animations
+ */
+import { Font } from 'astro:assets';
+import { ClientRouter } from 'astro:transitions';
+import { SEO } from 'astro-seo';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+import '../styles/global.css';
+import { brand } from '../config/brand';
+import { client } from '../data/client';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  schema?: Record<string, unknown>;
+  canonical?: string;
+}
+
+const {
+  title = brand.name,
+  description = brand.description,
+  image = '/og-image.png',
+  schema,
+  canonical,
+} = Astro.props;
+
+const pageTitle = title === brand.name ? title : `${title} — ${brand.name}`;
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site ?? brand.url).toString();
+---
+
+<html lang={brand.locale.split('_')[0]} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      title={pageTitle}
+      description={description}
+      canonical={canonicalURL}
+      openGraph={{
+        basic: {
+          title: pageTitle,
+          type: 'website',
+          image: image,
+          url: canonicalURL,
+        },
+        optional: {
+          description: description,
+          locale: brand.locale,
+          siteName: brand.name,
+        },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        site: '@jayatamaborepile',
+        creator: '@jayatamaborepile',
+        title: pageTitle,
+        description: description,
+        image: image,
+      }}
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Fonts -->
+    <Font cssVariable="--font-display" preload />
+    <Font cssVariable="--font-body"    preload />
+
+    <!-- JSON-LD Structured Data -->
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
+    <!-- FOUC prevention for dark mode -->
+    <script is:inline>
+      (function(){
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark-mode');
+        }
+      })();
+    </script>
+
+    <slot name="head" />
+    <ClientRouter />
+  </head>
+
+  <body class="bg-background text-text font-body antialiased">
+    <a
+      class="sr-only focus:not-sr-only focus:absolute focus:z-[99999] focus:bg-primary focus:text-primary-fg focus:px-4 focus:py-2 focus:rounded-md"
+      href="#main"
+    >
+      Skip to main content
+    </a>
+
+    <slot name="header" />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <slot name="footer" />
+
+    <WhatsappFloat />
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Banner from '../components/Banner.astro';
+import { brand } from '../config/brand';
+---
+
+<BaseLayout title="Disclaimer" description={`Disclaimer Layanan ${brand.name}`}>
+  <Header slot="header" />
+  <Banner title="Disclaimer" />
+  
+  <section class="py-section">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <div class="prose prose-blue prose-lg max-w-none text-text-muted">
+        <h2>Informasi Umum</h2>
+        <p>
+          Seluruh informasi yang terdapat di situs jayatamaborepile.com disajikan untuk tujuan informasi umum mengenai layanan jasa bore pile yang kami tawarkan. Kami berupaya menjaga agar informasi yang ditampilkan akurat dan terkini, namun kami tidak memberikan jaminan eksplisit maupun implisit atas kelengkapan, keakuratan, keandalan, kesesuaian, ataupun ketersediaan informasi di situs ini.
+        </p>
+
+        <h2>Bukan Nasihat Teknis/Struktural Final</h2>
+        <p>
+          Konten yang ada di situs ini, termasuk artikel, penjelasan teknis, ilustrasi, ataupun estimasi, tidak dimaksudkan sebagai pengganti perhitungan struktur atau nasihat teknis profesional yang lengkap. Untuk keputusan teknis yang bersifat krusial terhadap keselamatan bangunan, Anda disarankan tetap berkonsultasi dengan insinyur atau konsultan yang berwenang.
+        </p>
+
+        <h2>Perubahan Informasi dan Layanan</h2>
+        <p>
+          Jayatama Bore Pile berhak mengubah, menambah, atau menghapus konten situs kapan saja tanpa pemberitahuan sebelumnya. Informasi harga atau spesifikasi layanan yang tercantum di situs bukan merupakan penawaran mengikat; penawaran resmi hanya diberikan melalui komunikasi langsung dan/atau dokumen penawaran/RAB tertulis.
+        </p>
+
+        <h2>Tautan ke Situs Pihak Ketiga</h2>
+        <p>
+          Situs ini mungkin memuat tautan ke situs lain yang dioperasikan oleh pihak ketiga. Kami tidak memiliki kendali atas konten, kebijakan, atau praktik dari situs pihak ketiga tersebut dan tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari penggunaan situs-situs tersebut.
+        </p>
+
+        <h2>Portofolio dan Foto</h2>
+        <p>
+          Foto proyek, ilustrasi, dan dokumentasi yang ditampilkan di situs ini dimaksudkan untuk memberikan gambaran tentang jenis pekerjaan yang kami lakukan. Hasil pekerjaan di setiap lokasi dapat berbeda-beda tergantung kondisi tanah, lokasi, spesifikasi teknis, dan faktor lain.
+        </p>
+
+        <h2>Batasan Tanggung Jawab</h2>
+        <p>
+          Jayatama Bore Pile tidak akan bertanggung jawab atas kerugian atau kerusakan dalam bentuk apa pun yang timbul sehubungan dengan penggunaan situs ini. Ketentuan tanggung jawab kami dalam pelaksanaan jasa di lapangan hanya diatur dalam Kontrak/SPK tertulis dengan Klien.
+        </p>
+
+        <h2>Hak Cipta</h2>
+        <p>
+          Kecuali dinyatakan lain, seluruh teks, desain, logo, dan konten lain di situs jayatamaborepile.com adalah milik Jayatama Bore Pile atau digunakan dengan izin. Dilarang menyalin atau menggunakan konten untuk keperluan komersial tanpa persetujuan tertulis dari kami.
+        </p>
+
+        <h2>Kontak</h2>
+        <p>
+          <strong>Jayatama Bore Pile – LISA (Pemilik)</strong><br>
+          WhatsApp/Telepon: 0882‑1571‑4841<br>
+          Email: info@jayatamaborepile.com
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

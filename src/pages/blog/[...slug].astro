@@ -1,0 +1,27 @@
+---
+import { getWpPosts, getWpPostBySlug } from '../../data/wp-cms';
+import PostLayout from '../../layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getWpPosts();
+  return posts.map((post: any) => ({
+    params: { slug: post.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = await getWpPostBySlug(slug!);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+---
+
+<PostLayout
+  title={post.title}
+  description={post.description}
+  date={post.date}
+  author={post.author}
+>
+  <div set:html={post.content} />
+</PostLayout>

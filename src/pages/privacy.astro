@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Banner from '../components/Banner.astro';
+import { brand } from '../config/brand';
+---
+
+<BaseLayout title="Kebijakan Privasi" description={`Kebijakan Privasi ${brand.name}`}>
+  <Header slot="header" />
+  <Banner title="Kebijakan Privasi" />
+  
+  <section class="py-section">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <div class="prose prose-blue prose-lg max-w-none text-text-muted">
+        <h2>Pengantar</h2>
+        <p>
+          Jayatama Bore Pile ("kami", "kami", atau "Jayatama") menghargai privasi pengunjung dan pelanggan situs jayatamaborepile.com ("Situs"). Kebijakan Privasi ini menjelaskan jenis data pribadi yang kami kumpulkan, bagaimana kami menggunakannya, dengan siapa kami membagikannya, dan hak Anda terkait data tersebut. Dengan mengakses atau menggunakan Situs, Anda menyetujui pengumpulan dan penggunaan informasi sesuai kebijakan ini.
+        </p>
+
+        <h2>Pengendali Data</h2>
+        <p>
+          Pengendali data atas pemrosesan data pribadi melalui Situs adalah Jayatama Bore Pile. Jika Anda memiliki pertanyaan mengenai kebijakan ini atau ingin menggunakan hak terkait data pribadi, hubungi:
+        </p>
+        <ul>
+          <li><strong>Nama:</strong> Jayatama Bore Pile / LISA (Pemilik)</li>
+          <li><strong>Email:</strong> info@jayatamaborepile.com</li>
+          <li><strong>Telepon/WhatsApp:</strong> 0882‑1571‑4841</li>
+        </ul>
+
+        <h2>Jenis Data yang Kami Kumpulkan</h2>
+        <p>
+          a. <strong>Data yang Anda berikan secara langsung:</strong> nama, nomor telepon, alamat proyek, alamat email, pesan atau catatan komunikasi ketika Anda mengisi formulir kontak, mengirim email, atau menghubungi kami melalui WhatsApp.<br>
+          b. <strong>Data teknis dan penggunaan:</strong> alamat IP, tipe dan versi browser, halaman yang dikunjungi, waktu akses, halaman rujukan/keluar, serta data perangkat (device) yang dikumpulkan otomatis untuk tujuan analitik.<br>
+          c. <strong>Cookies dan teknologi serupa:</strong> cookie dan pixel pihak ketiga untuk analytics, performa, dan fungsionalitas (mis. Google Analytics).<br>
+          d. <strong>Data lain yang terkait proyek:</strong> foto lokasi proyek, dokumen RAB, dan informasi teknis yang Anda unggah atau kirimkan saat proses survey dan negosiasi.
+        </p>
+
+        <h2>Tujuan dan Dasar Hukum Pemrosesan</h2>
+        <p>Kami memproses data pribadi Anda untuk tujuan:</p>
+        <ul>
+          <li>Menanggapi pertanyaan, memberi penawaran, dan menjalankan kontrak layanan (dasar: pelaksanaan kontrak/permintaan Anda).</li>
+          <li>Melakukan survey lokasi dan penyusunan RAB, pengelolaan proyek, serta dokumentasi proyek.</li>
+          <li>Meningkatkan kualitas layanan dan pengalaman pengguna melalui analitik situs (dasar: kepentingan sah perusahaan).</li>
+          <li>Memenuhi kewajiban hukum atau permintaan otoritas (dasar: kepatuhan hukum).</li>
+          <li>Mengirimkan pembaruan terkait layanan, promosi, atau berita (dasar: persetujuan atau kepentingan sah; Anda bisa menarik persetujuan kapan saja).</li>
+        </ul>
+
+        <h2>Pengungkapan kepada Pihak Ketiga</h2>
+        <p>Kami tidak menjual data pribadi Anda. Data dapat dibagikan kepada:</p>
+        <ul>
+          <li>Penyedia layanan pihak ketiga yang membantu operasional (mis. hosting, email, penyedia analytics), dengan perjanjian kerahasiaan.</li>
+          <li>Konsultan atau subkontraktor proyek bila diperlukan untuk pelaksanaan pekerjaan di lokasi (mis. supplier beton, alat berat), sesuai kebutuhan proyek dan setelah mendapat persetujuan/ketentuan yang relevan.</li>
+          <li>Otoritas hukum bila diwajibkan berdasarkan undang‑undang atau perintah pengadilan.</li>
+        </ul>
+
+        <h2>Cookies dan Teknologi Serupa</h2>
+        <p>
+          Situs menggunakan cookies untuk fungsi dasar situs, preferensi pengguna, dan analytics. Anda dapat mengelola preferensi cookie melalui pengaturan browser; namun, mematikan cookies dapat memengaruhi fungsi tertentu di situs.
+        </p>
+
+        <h2>Retensi Data</h2>
+        <p>
+          Kami menyimpan data pribadi hanya selama diperlukan untuk tujuan pengumpulan atau sebagaimana diwajibkan oleh hukum. Untuk data pelanggan/proyek, data biasanya disimpan selama masa kerja dan sesuai kebutuhan administrasi setelah proyek selesai.
+        </p>
+
+        <h2>Keamanan Data</h2>
+        <p>
+          Kami menerapkan langkah teknis dan organisasi yang wajar untuk melindungi data pribadi dari akses tidak sah, perubahan, pengungkapan, atau perusakan. Ini termasuk penggunaan enkripsi HTTPS, kontrol akses internal, dan kerja sama dengan penyedia layanan tepercaya.
+        </p>
+
+        <h2>Hak Subjek Data</h2>
+        <p>Sesuai peraturan perlindungan data yang berlaku di Indonesia, Anda berhak untuk:</p>
+        <ul>
+          <li>Meminta akses ke data pribadi Anda yang kami simpan.</li>
+          <li>Meminta koreksi data jika ada kesalahan.</li>
+          <li>Meminta penghapusan atau pembatasan pemrosesan dalam kondisi tertentu.</li>
+          <li>Menarik persetujuan kapan saja untuk pemrosesan berdasarkan persetujuan.</li>
+          <li>Mengajukan keberatan atas pemrosesan data berbasis kepentingan sah.</li>
+        </ul>
+
+        <h2>Kontak & Pengaduan</h2>
+        <p>
+          Jika Anda memiliki pertanyaan, permintaan hak data, atau keluhan terkait privasi, silakan hubungi:
+        </p>
+        <p>
+          <strong>Jayatama Bore Pile / LISA (Pemilik)</strong><br>
+          Email: info@jayatamaborepile.com<br>
+          WhatsApp/Telepon: 0882‑1571‑4841
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
