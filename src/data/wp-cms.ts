@@ -4,11 +4,11 @@ const WP_TOKEN = import.meta.env.WORDPRESS_TOKEN;
 export async function getWpPosts() {
   try {
     if (!WP_URL) {
-      console.warn('WORDPRESS_URL missing in .env');
+      console.warn('WORDPRESS_URL missing in environment variables. Blog posts will not be fetched.');
       return [];
     }
 
-    const url = `${WP_URL}/wp-json/wp/v2/posts?_embed&status=publish`;
+    const url = `${WP_URL}/wp-json/wp/v2/posts?_embed&status=publish&per_page=100`;
     console.log('Fetching WP posts from:', url);
     
     const headers: HeadersInit = { 'Content-Type': 'application/json' };

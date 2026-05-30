@@ -34,7 +34,7 @@ const formattedDate = date.toLocaleDateString('id-ID', {
             <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
-            <a href="/blog" class="transition-colors hover:text-primary-fg">Blog</a>
+            <a href="/blog" data-astro-reload class="transition-colors hover:text-primary-fg">Blog</a>
           </li>
           <li class="flex items-center gap-1.5">
             <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -64,6 +64,7 @@ const formattedDate = date.toLocaleDateString('id-ID', {
       <div class="mt-10 border-t border-border pt-6">
         <a
           href="/blog"
+          data-astro-reload
           class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-light"
         >
           <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
