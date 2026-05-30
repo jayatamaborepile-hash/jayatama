@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import { brand } from '../config/brand';
 import { client } from '../data/client';
+import logoImage from '../assets/images/logo/logo.png';
 
 const nav = [
   { label: 'Beranda',  href: '/' },
@@ -17,14 +19,25 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm"
   transition:persist
 >
-  <div class="mx-auto flex max-w-site items-center justify-between px-4 py-3 sm:px-6">
+  <div class="mx-auto flex max-w-site items-center justify-between px-4 h-16 sm:h-20 sm:px-6">
     <!-- Logo -->
-    <a
-      href="/"
-      class="font-heading text-xl font-bold uppercase tracking-wide text-primary transition-opacity hover:opacity-80"
-    >
-      {brand.name}
-    </a>
+    <div class="relative h-full flex items-center">
+      <a
+        href="/"
+        class="transition-opacity hover:opacity-80 flex items-center"
+      >
+        <img
+          src="/assets/img/logo/logo.png"
+          alt={`${brand.name} Logo`}
+          width="300"
+          height="100"
+          class="absolute top-1/2 -translate-y-1/2 h-20 w-auto sm:h-28 max-w-none"
+          loading="eager"
+        />
+        <!-- Invisible spacer to maintain layout width for the logo -->
+        <div class="h-1 w-32 sm:w-44"></div>
+      </a>
+    </div>
 
     <!-- Desktop nav -->
     <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">

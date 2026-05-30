@@ -1,0 +1,42 @@
+---
+const clientLogos = [
+  'logo-abipraya.png',
+  'logo-adhi-karya.png',
+  'logo-hutama-karya.png',
+  'logo-jaya-konstruksi.png',
+  'logo-jaya-obayashi.png',
+  'logo-leighton-asia.png',
+  'logo-nindya-karya.png',
+  'logo-pp.png',
+  'logo-pupr.png',
+  'logo-total-bangun.png',
+  'logo-tripatra.png',
+  'logo-waskita-karya.png',
+  'logo-wijaya-karya.png'
+];
+---
+
+<section class="bg-surface py-12 sm:py-16">
+  <div class="mx-auto max-w-site px-4 sm:px-6">
+    <div class="mx-auto mb-10 max-w-2xl text-center">
+      <span class="text-topper font-bold uppercase tracking-widest text-accent">Klien Kami</span>
+      <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">Dipercaya Oleh Perusahaan Terkemuka</h2>
+      <p class="mt-3 text-text-muted leading-relaxed">
+        Kami bangga telah bekerja sama dengan berbagai perusahaan konstruksi dan instansi pemerintah dalam membangun infrastruktur yang kokoh.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 items-center justify-items-center gap-10 md:grid-cols-3 lg:grid-cols-4">
+      {clientLogos.map((logo) => (
+        <div class="flex h-24 w-full items-center justify-center p-2 transition-all duration-300 hover:scale-110 md:h-32">
+          <img
+            src={`/assets/img/logoklien/${logo}`}
+            alt="Logo Klien Jayatama Bore Pile"
+            class="max-h-full w-auto object-contain opacity-80 hover:opacity-100"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

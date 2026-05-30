@@ -1,0 +1,58 @@
+---
+const features = [
+  {
+    title: 'Peralatan Modern',
+    description: 'Kami menggunakan mesin bor bore pile dengan teknologi terbaru untuk hasil yang presisi dan efisien.',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />'
+  },
+  {
+    title: 'Tenaga Ahli',
+    description: 'Tim kami terdiri dari teknisi dan operator berpengalaman yang telah menangani ratusan proyek pondasi.',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />'
+  },
+  {
+    title: 'Tepat Waktu',
+    description: 'Kami berkomitmen untuk menyelesaikan setiap proyek sesuai dengan jadwal yang telah disepakati.',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />'
+  },
+  {
+    title: 'Standar Keamanan Tinggi',
+    description: 'Mengutamakan K3 (Kesehatan dan Keselamatan Kerja) dalam setiap aspek pengerjaan di lapangan.',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />'
+  },
+  {
+    title: 'Harga Kompetitif',
+    description: 'Memberikan penawaran harga yang transparan dan kompetitif tanpa mengurangi kualitas pekerjaan.',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />'
+  },
+  {
+    title: 'Hasil Berkualitas',
+    description: 'Menjamin kekuatan pondasi yang maksimal untuk keamanan dan umur panjang bangunan Anda.',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />'
+  }
+];
+---
+
+<section class="py-section">
+  <div class="mx-auto max-w-site px-4 sm:px-6">
+    <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+      <span class="text-topper font-bold uppercase tracking-widest text-accent">Keunggulan Kami</span>
+      <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">Mengapa Memilih Jayatama Bore Pile?</h2>
+      <p class="mt-3 text-text-muted leading-relaxed">
+        Kami berkomitmen memberikan hasil terbaik melalui kombinasi teknologi, keahlian, dan integritas kerja.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((feature) => (
+        <div class="flex flex-col items-center text-center p-6 rounded-xl border border-border bg-background transition-all hover:shadow-md">
+          <div class="mb-4 flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <svg class="size-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" set:html={feature.icon} />
+          </div>
+          <h3 class="font-heading text-xl font-bold text-text">{feature.title}</h3>
+          <p class="mt-3 text-text-muted leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
