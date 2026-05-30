@@ -15,6 +15,8 @@ const post = await getWpPostBySlug(slug!);
 if (!post) {
   return Astro.redirect('/404');
 }
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url).toString();
 ---
 
 <PostLayout
@@ -22,6 +24,30 @@ if (!post) {
   description={post.description}
   date={post.date}
   author={post.author}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': post.title,
+    'description': post.description,
+    'author': {
+      '@type': 'Person',
+      'name': post.author
+    },
+    'datePublished': post.date.toISOString(),
+    'publisher': {
+      '@type': 'Organization',
+      'name': brand.name,
+      'logo': {
+        '@type': 'ImageObject',
+        'url': new URL('/assets/img/logo/logo.png', brand.url).toString()
+      }
+    },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': canonicalURL
+    },
+    'articleSection': 'Artikel'
+  }}
 >
   <div set:html={post.content} />
 </PostLayout>

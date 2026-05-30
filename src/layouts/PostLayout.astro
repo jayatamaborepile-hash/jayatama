@@ -9,9 +9,10 @@ interface Props {
   description: string;
   date: Date;
   author?: string;
+  schema?: any;
 }
 
-const { title, description, date, author = 'Tim Jayatama' } = Astro.props;
+const { title, description, date, author = 'Tim Jayatama', schema } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('id-ID', {
   year: 'numeric',
@@ -20,7 +21,7 @@ const formattedDate = date.toLocaleDateString('id-ID', {
 });
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} schema={schema}>
   <Header slot="header" />
 
   <!-- Post hero -->

@@ -1,18 +1,18 @@
 ---
 const clientLogos = [
-  'logo-abipraya.png',
-  'logo-adhi-karya.png',
-  'logo-hutama-karya.png',
-  'logo-jaya-konstruksi.png',
-  'logo-jaya-obayashi.png',
-  'logo-leighton-asia.png',
-  'logo-nindya-karya.png',
-  'logo-pp.png',
-  'logo-pupr.png',
-  'logo-total-bangun.png',
-  'logo-tripatra.png',
-  'logo-waskita-karya.png',
-  'logo-wijaya-karya.png'
+  { file: 'logo-abipraya.png', name: 'PT Brantas Abipraya (Persero)' },
+  { file: 'logo-adhi-karya.png', name: 'PT Adhi Karya (Persero) Tbk' },
+  { file: 'logo-hutama-karya.png', name: 'PT Hutama Karya (Persero)' },
+  { file: 'logo-jaya-konstruksi.png', name: 'PT Jaya Konstruksi Manggala Pratama Tbk' },
+  { file: 'logo-jaya-obayashi.png', name: 'PT Jaya Obayashi' },
+  { file: 'logo-leighton-asia.png', name: 'Leighton Asia' },
+  { file: 'logo-nindya-karya.png', name: 'PT Nindya Karya (Persero)' },
+  { file: 'logo-pp.png', name: 'PT Pembangunan Perumahan (Persero) Tbk' },
+  { file: 'logo-pupr.png', name: 'Kementerian Pekerjaan Umum dan Perumahan Rakyat (PUPR)' },
+  { file: 'logo-total-bangun.png', name: 'PT Total Bangun Persada Tbk' },
+  { file: 'logo-tripatra.png', name: 'PT Tripatra Engineers & Contractors' },
+  { file: 'logo-waskita-karya.png', name: 'PT Waskita Karya (Persero) Tbk' },
+  { file: 'logo-wijaya-karya.png', name: 'PT Wijaya Karya (Persero) Tbk' }
 ];
 ---
 
@@ -22,7 +22,7 @@ const clientLogos = [
       <span class="text-topper font-bold uppercase tracking-widest text-accent">Klien Kami</span>
       <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">Dipercaya Oleh Perusahaan Terkemuka</h2>
       <p class="mt-3 text-text-muted leading-relaxed">
-        Kami bangga telah bekerja sama dengan berbagai perusahaan konstruksi dan instansi pemerintah dalam membangun infrastruktur yang kokoh.
+        Kami bangga telah bekerja sama dengan berbagai perusahaan konstruksi dan instansi pemerintah dalam membangun infrastruktur yang kokoh di Indonesia.
       </p>
     </div>
 
@@ -30,8 +30,9 @@ const clientLogos = [
       {clientLogos.map((logo) => (
         <div class="flex h-24 w-full items-center justify-center p-2 transition-all duration-300 hover:scale-110 md:h-32">
           <img
-            src={`/assets/img/logoklien/${logo}`}
-            alt="Logo Klien Jayatama Bore Pile"
+            src={`/assets/img/logoklien/${logo.file}`}
+            alt={`Logo Klien Jayatama Bore Pile - ${logo.name}`}
+            title={logo.name}
             class="max-h-full w-auto object-contain opacity-80 hover:opacity-100"
             loading="lazy"
           />
