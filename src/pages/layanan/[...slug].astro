@@ -83,7 +83,7 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
               <div class="flex items-baseline gap-3">
                 <p class="text-3xl font-bold text-primary">
                   {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.price))}
-                  <span class="text-sm font-normal text-text-muted ml-1">/ meter</span>
+                  <span class="text-sm font-normal text-text-muted ml-1">/ m¹</span>
                 </p>
                 {service.on_sale && service.regular_price && (
                   <span class="text-lg text-text-muted line-through">
@@ -112,7 +112,7 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
             </a>
           </div>
 
-          <div class="pt-6 border-t border-border flex items-center justify-between">
+          <div class="pt-6 border-t border-border flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-4">
               <h3 class="text-sm font-bold uppercase tracking-wider text-text">Kategori:</h3>
               <div class="flex flex-wrap gap-2">
@@ -121,12 +121,25 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
                 ))}
               </div>
             </div>
-            {service.sku && (
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-text-muted">SKU:</span>
-                <span class="text-xs font-medium text-text">{service.sku}</span>
-              </div>
-            )}
+            
+            <div class="flex items-center gap-4">
+              {service.tags && service.tags.length > 0 && (
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold uppercase tracking-wider text-text-muted">Tags:</span>
+                  <div class="flex flex-wrap gap-1">
+                    {service.tags.map((tag: string) => (
+                      <span class="text-xs font-medium text-primary">#{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {service.sku && (
+                <div class="flex items-center gap-2 border-l border-border pl-4">
+                  <span class="text-xs font-bold uppercase tracking-wider text-text-muted">SKU:</span>
+                  <span class="text-xs font-medium text-text">{service.sku}</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
