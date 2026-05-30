@@ -5,33 +5,9 @@ import Footer from '../components/Footer.astro';
 import Banner from '../components/Banner.astro';
 import CTA from '../components/CTA.astro';
 import { brand } from '../config/brand';
+import { getWcProducts } from '../data/wc-cms';
 
-const services = [
-  {
-    title: 'Konsultasi Teknis & Estimasi',
-    description: 'Kami menyediakan layanan konsultasi teknis gratis untuk membantu Anda menentukan spesifikasi pondasi yang paling tepat dan efisien untuk bangunan Anda.',
-  },
-  {
-    title: 'Survey Lokasi & Uji Tanah',
-    description: 'Tim kami akan melakukan peninjauan langsung ke lokasi proyek untuk memeriksa kondisi tanah, akses alat berat, dan faktor lingkungan lainnya.',
-  },
-  {
-    title: 'Penyusunan RAB Transparan',
-    description: 'Kami memberikan penawaran harga (RAB) yang mendetail dan transparan. Anda akan tahu persis apa yang Anda bayar tanpa ada biaya tambahan yang tiba-tiba muncul.',
-  },
-  {
-    title: 'Pengeboran Bore Pile',
-    description: 'Menggunakan peralatan yang mumpuni, kami melaksanakan pengeboran sesuai diameter dan kedalaman yang telah direncanakan dalam desain struktur.',
-  },
-  {
-    title: 'Pembesian & Pengecoran',
-    description: 'Kami memastikan proses pembesian (rebar) dan pengecoran beton dilakukan dengan material berkualitas tinggi sesuai standar kekuatan konstruksi.',
-  },
-  {
-    title: 'Dokumentasi & Serah Terima',
-    description: 'Setiap tahap pekerjaan didokumentasikan dengan baik (foto & catatan) sebagai laporan kepada klien sebelum proses serah terima pekerjaan.',
-  },
-];
+const wcServices = await getWcProducts();
 
 const icons = [
   '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />',
@@ -58,12 +34,12 @@ const icons = [
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Layanan Jayatama Bore Pile',
-      itemListElement: services.map((s) => ({
+      itemListElement: wcServices.map((s) => ({
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: s.title,
-          description: s.description,
+          name: s.name,
+          description: s.short_description,
         }
       }))
     }
@@ -83,14 +59,26 @@ const icons = [
       </div>
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-        {services.map((service, i) => (
-          <div class="flex gap-5 rounded-lg border border-border bg-background p-6 shadow-sm">
-            <div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" set:html={icons[i % icons.length]} />
+        {wcServices.map((service, i) => (
+          <div class="flex flex-col gap-4 rounded-lg border border-border bg-background p-6 shadow-sm transition-shadow hover:shadow-md">
+            <div class="flex gap-5">
+              <div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" set:html={icons[i % icons.length]} />
+              </div>
+              <div>
+                <h3 class="font-heading text-h3 font-semibold text-text">
+                  <a href={`/services/${service.slug}`} class="hover:text-primary transition-colors">
+                    {service.name}
+                  </a>
+                </h3>
+                <p class="mt-2 text-text-muted leading-relaxed">{service.short_description}</p>
+              </div>
             </div>
-            <div>
-              <h3 class="font-heading text-h3 font-semibold text-text">{service.title}</h3>
-              <p class="mt-2 text-text-muted leading-relaxed">{service.description}</p>
+            <div class="mt-auto pt-4 border-t border-border flex items-center justify-between">
+              {service.price && (
+                <span class="font-bold text-primary">Mulai {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.price))}</span>
+              )}
+              <a href={`/services/${service.slug}`} class="text-sm font-bold text-accent hover:underline">Detail Layanan &rarr;</a>
             </div>
           </div>
         ))}

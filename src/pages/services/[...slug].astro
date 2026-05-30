@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Banner from '../../components/Banner.astro';
+import CTA from '../../components/CTA.astro';
+import { brand } from '../../config/brand';
+import { getWcProducts, getWcProductBySlug } from '../../data/wc-cms';
+
+export async function getStaticPaths() {
+  const products = await getWcProducts();
+  return products.map((product: any) => ({
+    params: { slug: product.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const service = await getWcProductBySlug(slug!);
+
+if (!service) {
+  return Astro.redirect('/404');
+}
+
+const pageTitle = `${service.name} — Jasa Bore Pile`;
+const metaDescription = service.short_description;
+const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${service.name}`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={metaDescription}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: service.name,
+    description: metaDescription,
+    image: service.image,
+    sku: service.sku,
+    brand: {
+      '@type': 'Brand',
+      name: brand.name
+    },
+    offers: {
+      '@type': 'Offer',
+      price: service.price || '0',
+      priceCurrency: 'IDR',
+      availability: 'https://schema.org/InStock',
+      url: new URL(Astro.url.pathname, brand.url).toString()
+    }
+  }}
+>
+  <Header slot="header" />
+
+  <Banner title={service.name} />
+
+  <section class="py-section">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <!-- Image -->
+        <div class="overflow-hidden rounded-xl shadow-lg">
+          {service.image ? (
+            <img src={service.image} alt={service.name} class="size-full object-cover" />
+          ) : (
+            <div class="flex aspect-video items-center justify-center bg-surface text-text-muted">
+              No image available
+            </div>
+          )}
+        </div>
+
+        <!-- Content -->
+        <div class="space-y-6">
+          <nav aria-label="Breadcrumb" class="text-sm text-text-muted">
+            <ol class="flex items-center gap-2">
+              <li><a href="/services" class="hover:text-primary transition-colors">Layanan</a></li>
+              <li class="flex items-center gap-2">
+                <svg class="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                <span class="text-text font-medium">{service.name}</span>
+              </li>
+            </ol>
+          </nav>
+
+          <h1 class="font-heading text-h1 font-bold uppercase text-text">{service.name}</h1>
+          
+          {service.price && (
+            <p class="text-2xl font-bold text-primary">
+              Mulai {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Number(service.price))}
+            </p>
+          )}
+
+          <div class="prose prose-lg max-w-none text-text-muted" set:html={service.description} />
+
+          <div class="pt-6 border-t border-border">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-text mb-3">Kategori & Tags</h3>
+            <div class="flex flex-wrap gap-2">
+              {service.categories.map((cat: string) => (
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">{cat}</span>
+              ))}
+              {service.tags.map((tag: string) => (
+                <span class="px-3 py-1 bg-surface text-text-muted text-xs font-medium rounded-full border border-border">#{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA title="Butuh Layanan Ini?" description={`Hubungi kami sekarang untuk konsultasi teknis dan penawaran harga terbaik untuk ${service.name}.`} />
+
+  <Footer slot="footer" />
+</BaseLayout>
