@@ -94,11 +94,7 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
             </div>
           )}
 
-          <div class="text-lg text-text-muted italic border-l-4 border-primary/20 pl-4 py-2">
-            {service.short_description}
-          </div>
-
-          <div class="mt-4 flex flex-wrap gap-4 pt-6">
+          <div class="flex flex-wrap gap-4 pt-2">
             <a 
               href={`https://wa.me/${client.phoneForTel.replace(/\D/g, '')}?text=Halo Jayatama, saya ingin konsultasi dan pesan layanan: ${service.name}`}
               target="_blank"
@@ -110,6 +106,10 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
               </svg>
               Konsultasi via WhatsApp
             </a>
+          </div>
+
+          <div class="text-lg text-text-muted italic border-l-4 border-primary/20 pl-4 py-2">
+            {service.short_description}
           </div>
 
           <div class="pt-6 border-t border-border flex flex-wrap items-center justify-between gap-4">
