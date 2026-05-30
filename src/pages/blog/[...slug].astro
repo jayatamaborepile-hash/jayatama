@@ -1,14 +1,7 @@
 ---
-import { getWpPosts, getWpPostBySlug } from '../../data/wp-cms';
+import { getWpPostBySlug } from '../../data/wp-cms';
 import PostLayout from '../../layouts/PostLayout.astro';
 import { brand } from '../../config/brand';
-
-export async function getStaticPaths() {
-  const posts = await getWpPosts();
-  return posts.map((post: any) => ({
-    params: { slug: post.id },
-  }));
-}
 
 const { slug } = Astro.params;
 const post = await getWpPostBySlug(slug!);

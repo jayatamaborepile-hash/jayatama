@@ -5,14 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Banner from '../../components/Banner.astro';
 import CTA from '../../components/CTA.astro';
 import { brand } from '../../config/brand';
-import { getWcProducts, getWcProductBySlug } from '../../data/wc-cms';
-
-export async function getStaticPaths() {
-  const products = await getWcProducts();
-  return products.map((product: any) => ({
-    params: { slug: product.slug },
-  }));
-}
+import { getWcProductBySlug } from '../../data/wc-cms';
 
 const { slug } = Astro.params;
 const service = await getWcProductBySlug(slug!);
