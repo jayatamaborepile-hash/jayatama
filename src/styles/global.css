@@ -3,8 +3,11 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
-  img {
-    @apply max-w-full h-auto;
+  .prose :global(img) {
+    max-width: 100% !important;
+    height: auto !important;
+    width: 100% !important; /* Memaksa agar tetap dalam batasan */
+    object-fit: contain;
   }
   html {
     scroll-behavior: smooth;
