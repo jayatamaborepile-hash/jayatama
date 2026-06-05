@@ -14,8 +14,11 @@ const service = await getWcProductBySlug(slug!);
 if (!service) {
   return Astro.redirect('/404');
 }
-
-const pageTitle = `${service.name} — Jasa Bore Pile`;
+const cleanDescription = service.description
+  .replace(/width="[^"]*"/g, '')
+  .replace(/height="[^"]*"/g, '')
+  .replace(/style="[^"]*"/g, '');
+const pageTitle = `${service.name} | Jayatama Bore Pile`;
 const metaDescription = service.short_description;
 const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${service.name}`;
 ---
@@ -144,11 +147,10 @@ const keywords = service.tags.join(', ') || `bore pile, pondasi, jakarta, ${serv
         </div>
       </div>
 
-      <!-- Bottom Section: Full Width Description -->
-      <div class="mt-12 border-t border-border pt-12">
-        <h2 class="font-heading text-h2 font-bold uppercase text-text mb-8">Deskripsi Lengkap</h2>
-        <div class="prose prose-lg max-w-none text-text-muted" set:html={service.description} />
-      </div>
+    <div class="mt-12 border-t border-border pt-12">
+    <h2 class="font-heading text-h2 font-bold uppercase text-text mb-8">Deskripsi Lengkap</h2>
+    <div class="prose prose-lg max-w-none text-text-muted" set:html={cleanDescription} />
+    </div>
     </div>
   </section>
 
