@@ -3,6 +3,9 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
+  img {
+    @apply max-w-full h-auto;
+  }
   html {
     scroll-behavior: smooth;
   }
